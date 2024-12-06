@@ -20,12 +20,17 @@ class DataManager
         return $db;
     }
 
-    public function GetOeuvreById(int $id): array
+    public function GetOeuvreById(int $id): array | false
     {
-        $s = $this->db->prepare("SELECT * FROM oeuvre WHERE id = :id");
-        $s->bindParam(':id',$id);
-        $s->execute();
-        return $s->fetch();
+        try{
+            $s = $this->db->prepare("SELECT * FROM oeuvre WHERE id = :id");
+            $s->bindParam(':id',$id);
+            $s->execute();
+            return $s->fetch();
+        }
+        catch(Exception $_){
+            return false;
+        }
     }
     public function GetAllOeuvre(): array
     {
