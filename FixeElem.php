@@ -2,8 +2,12 @@
 
 class FixeELem
 {
-    public static function showBaseStart():void
+    public static function showBaseStart(string $oeuvre = null):void
     {
+        $t = '';
+        if ($oeuvre) {
+            $t = ' - ' . $oeuvre;
+        }
         ?>
         <!doctype html>
         <html lang="fr">
@@ -13,7 +17,7 @@ class FixeELem
                 content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <link rel="stylesheet" href="css/style.css">
-            <title>The ArtBox</title>
+            <title>The ArtBox<?php echo $t ?></title>
         </head>
         <body>
         <?php
@@ -29,7 +33,7 @@ class FixeELem
     {
         ?>
         <header>
-            <a href="index.html"><img src="img/logo.png" alt="Logo Artbox" id="logo"></a>
+            <a href="index.php"><img src="img/logo.png" alt="Logo Artbox" id="logo"></a>
             <nav>
                 <ul>
                     <li><a href="./">Accueil</a></li>

@@ -52,11 +52,17 @@ footer {
 .hide {
     display: none;
 }
+.f-champ {
+    max-width: 800px;
+    width: fit-content;
+}
 .warning {
     background-color: rgba(255, 0, 0, 0.33);
     border: 1px solid red;
     border-radius: 5px;
-    width: 250px;
+}
+.small_t {
+    font-size: x-small;
 }
 
 .oeuvre {

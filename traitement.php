@@ -28,10 +28,14 @@ if($_POST)
             $valide = false;
         }
     }
-    $dbm->InsertOeuvre($data['artiste'], $data['oeuvre'], $data['img'], $data['desc']);
-    
+    if($valide)
+    {
+        $dbm->InsertOeuvre($data['artiste'], $data['oeuvre'], $data['img'], $data['desc']);
+        foreach ($_POST as $key => $_) {
+            $_POST[$key] = '';
+        }
+    }
 }
-var_dump($warning);
 FixeELem::showBaseStart();
 FixeELem::showHeader();
 
@@ -40,29 +44,26 @@ FixeELem::showHeader();
     <h1>Formulaire d'ajoute d'œuvre</h1>
     <form action="./traitement.php" method="post">
 
-        <div class="warning <?php if(!$warning['oeuvre']) echo 'hide';?>">
-            <span>Ce champ doit être rempli !</span>
+        <div class="f-champ<?php if($warning['oeuvre']) echo ' warning'; ?>" >
+            <span class="small_t<?php if(!$warning['oeuvre']) echo ' hide';?>">Ce champ doit être rempli !</span><br>       
+            <label for="oeuvre">Nom œuvre</label><br>
+            <input type="text" name="oeuvre" id="oeuvre" value='<?php if(isset($_POST['oeuvre'])) echo $_POST['oeuvre']?>'><br>
         </div>
-        <label for="oeuvre">Nom œuvre</label><br>
-        <input type="text" name="oeuvre" id="oeuvre" value='<?php if(isset($_POST['oeuvre'])) echo $_POST['oeuvre']?>'><br>
-
-        <div class="warning <?php if(!$warning['artiste']) echo 'hide';?>">
-            <span>Ce champ doit être rempli !</span>
+        <div class="f-champ<?php if($warning['artiste']) echo ' warning'; ?>" >
+            <span class="small_t<?php if(!$warning['artiste']) echo ' hide';?>">Ce champ doit être rempli !</span><br>
+            <label for="artiste">Artiste</label><br>
+            <input type="text" name="artiste" id="artiste" value='<?php if(isset($_POST['artiste'])) echo $_POST['artiste']?>'><br>
         </div>
-        <label for="artiste">Artiste</label><br>
-        <input type="text" name="artiste" id="artiste" value='<?php if(isset($_POST['artiste'])) echo $_POST['artiste']?>'><br>
-
-        <div class="warning <?php if(!$warning['desc']) echo 'hide';?>">
-            <span>Ce champ doit être rempli !</span>
+        <div class="f-champ<?php if($warning['desc']) echo ' warning'; ?>" >
+            <span class="small_t<?php if(!$warning['desc']) echo ' hide';?>">Ce champ doit être rempli !</span><br>
+            <label for="desc">Description</label><br>
+            <textarea name="desc" id="desc"><?php if(isset($_POST['desc'])) echo $_POST['desc']?></textarea><br>
         </div>
-        <label for="desc">Description</label><br>
-        <textarea name="desc" id="desc"><?php if(isset($_POST['desc'])) echo $_POST['desc']?></textarea><br>
-
-        <div class="warning <?php if(!$warning['img']) echo 'hide';?>">
-            <span>Ce champ doit être rempli !</span>
+        <div class="f-champ<?php if($warning['img']) echo ' warning'; ?>" >
+            <span class="small_t<?php if(!$warning['img']) echo ' hide';?>">Ce champ doit être rempli !</span><br>      
+            <label for="img">Nom fichier du image</label><br>
+            <input type="text" name="img" id="img" value='<?php if(isset($_POST['img'])) echo $_POST['img']?>'><br>
         </div>
-        <label for="img">Nom fichier du image</label><br>
-        <input type="text" name="img" id="img" value='<?php if(isset($_POST['desc'])) echo $_POST['desc']?>'><br>
         <input type="submit" value="Enregistrer">
     </form>
 </main>

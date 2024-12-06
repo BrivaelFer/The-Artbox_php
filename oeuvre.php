@@ -5,16 +5,17 @@ require_once('FixeELem.php');
 
 $dbm = new DataManager();
 
-//$oeuvre = $dbm->GetOeuvreById($_GET['id']);
 $oeuvre = $dbm->GetOeuvreById((int)$_GET['id']);
 
-FixeELem::showBaseStart();
-FixeELem::showHeader();
 $id = (int)$oeuvre['id'];
 $artist = $oeuvre['artiste'];
 $titre = $oeuvre['titre'];
 $img = $oeuvre['img'];
 $des = $oeuvre['des'];
+
+FixeELem::showBaseStart($titre);
+FixeELem::showHeader();
+
 
 ?>
 <main>
