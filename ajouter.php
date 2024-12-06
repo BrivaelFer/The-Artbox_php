@@ -62,7 +62,7 @@ FixeELem::showHeader();
         <div class="f-champ<?php if($warning['img']) echo ' warning'; ?>" >
             <span class="small_t<?php if(!$warning['img']) echo ' hide';?>">Ce champ doit être rempli !</span><br>      
             <label for="img">Nom fichier du image</label><br>
-            <input type="text" name="img" id="img" value='<?php if(isset($_POST['img'])) echo $_POST['img']?>'><br>
+            <input type="url" name="img" id="img" value='<?php if(isset($_POST['img'])) echo $_POST['img']?>'><br>
         </div>
         <input type="submit" value="Enregistrer">
     </form>
